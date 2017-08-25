@@ -11,7 +11,7 @@ var store = new vuex.Store({
   },
   mutations: {
     setResults(state, results){
-      state.results = results
+      state.results = results;
     }
   },
   actions: {
@@ -20,7 +20,9 @@ var store = new vuex.Store({
       var url2 = 'https://itunes.apple.com/search?term=' + artist;
       var apiUrl = url + encodeURIComponent(url2);
       $.get(apiUrl).then(data=>{
-        commit('setResults', data)
+       // console.log(data)
+        commit('setResults',JSON.parse(data)) // commit to the state through mutation 
+      console.log(JSON.parse(data))
       })
     },
     getMyTunes({commit, dispatch}){

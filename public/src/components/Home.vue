@@ -1,24 +1,41 @@
 <template>
   <div class="home">
     <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
-    <my-tunes class="my-tunes"></my-tunes>
-    <itunes class="itunes"></itunes>
+    <mytunes></mytunes>
+    <itunes></itunes>
+    
+  </div>
   </div>
 </template>
 
 <script>
+import Itunes from './Itunes'
+import Mytunes from './Mytunes'
 export default {
   name: 'home',
   data () {
     return {
       
     }
+  },
+   components: {
+   Itunes,
+   Mytunes
+
   }
 }
 </script>
 
 
 <style>
+
+/*@font-face {
+    font-family: Klavika Bold;
+    src: url('./assets/KlavikaBold.ttf');
+    }*/
+
+
+
 .my-tunes{
   display: inline-block;
   min-height: 500px;
