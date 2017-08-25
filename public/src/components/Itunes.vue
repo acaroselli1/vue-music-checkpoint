@@ -89,7 +89,7 @@
     
     .color {
         background-color: navy;
-        width:50%;
+        width:75%;
         float:left;
     }
 
@@ -121,7 +121,7 @@
 
     .card {
         border: 5px solid grey;
-        height: 48vh;
+        height: 63vh;
            text-align: center; 
      }  
 

@@ -22,7 +22,16 @@ var store = new vuex.Store({
     removeTrack(state, song){
      var index = state.myTunes.indexOf(song);
      state.myTunes.splice(index,1);
-    }
+    },
+    promoteTrack(state, song){
+     var index = state.myTunes.indexOf(song) 
+     state.myTunes.splice((index-1),2,song,state.myTunes[index-1])
+     
+    },
+     demoteTrack(state, song){
+     var index = state.myTunes.indexOf(song);
+     state.myTunes.splice((index),2,state.myTunes[index+1],song)
+    },
   
   },
   actions: {
@@ -47,11 +56,13 @@ var store = new vuex.Store({
       //Removes track from the database with delete
       commit('removeTrack', song)
     },
-    promoteTrack({commit, dispatch}, track){
+    promoteTrack({commit, dispatch}, song){
       //this should increase the position / upvotes and downvotes on the track
+     commit('promoteTrack', song)
     },
-    demoteTrack({commit, dispatch}, track){
+    demoteTrack({commit, dispatch}, song){
       //this should decrease the position / upvotes and downvotes on the track
+     commit('demoteTrack', song)
     }
 
   }

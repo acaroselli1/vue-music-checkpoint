@@ -23,7 +23,8 @@
     </div>
     <div class="row">
       <div v-for="song in songs">
-        <div class="col-xs-3 item">
+      
+        <div class="col-xs-8 item">
           <div class="card">
             <img class="card-img-top" :src="song.artworkUrl100" alt="card cap">
             <div class="card-block">
@@ -31,9 +32,9 @@
               <p class="artist">{{song.artistName}}</p>
               <p>{{song.collectionName}}</p>
               <p>{{song.collectionPrice}}</p>
-              <span><button type="button" class="btn btn-primary btn-sm add" @click="addToMyTunes(song)"><span class="glyphicon glyphicon-arrow-up"></span></button>
+              <span><button type="button" class="btn btn-primary btn-sm add" @click="promoteTrack(song)"><span class="glyphicon glyphicon-arrow-up"></span></button>
               </span>
-              <span><button type="button" class="btn btn-primary btn-sm add" @click="addToMyTunes(song)"><span class="glyphicon glyphicon-arrow-down"></span></button>
+              <span><button type="button" class="btn btn-primary btn-sm add" @click="demoteTrack(song)"><span class="glyphicon glyphicon-arrow-down"></span></button>
               </span>
               <span><button type="button" class="btn btn-primary btn-sm add" @click="removeTrack(song)"><span class="glyphicon glyphicon-remove-sign">Remove</span></button>
               </span>
@@ -47,6 +48,7 @@
           </audio>
         </p>
       </div>
+    
     </div>
 
 
@@ -64,7 +66,14 @@
     
       removeTrack(song){
                 this.$store.dispatch("removeTrack", song)
-            } 
+            }, 
+      demoteTrack(song){
+                this.$store.dispatch("demoteTrack", song)
+            }, 
+      promoteTrack(song){
+                this.$store.dispatch("promoteTrack", song)
+            }, 
+
     },
 
     computed: { // computed creates a variable ,in this case songs, that is constantly the value of whatever is returned
@@ -80,7 +89,7 @@
 </script>
 <style scoped>
   .color {
-    width: 50%;
+    width: 25%;
     float: right;
   }
 
@@ -120,8 +129,9 @@
 
   .card {
     border: 5px solid grey;
-    height:48vh;
+    height:50vh;
     text-align: center;
+   
   }
 
   .item {
