@@ -28,7 +28,7 @@
         </div>
         <div class="row">
             <div v-for="song in songs">
-                <div class="col-xs-3 item">
+                   <div class="col-xs-3 item">   
                     <div class="card">
                         <img class="card-img-top" :src="song.artworkUrl100" alt="card cap">
                         <div class="card-block">
@@ -36,6 +36,7 @@
                             <p class="artist">{{song.artistName}}</p>
                             <p>{{song.collectionName}}</p>
                             <p>{{song.collectionPrice}}</p>
+                            <button type= "button" class ="btn btn-primary btn-sm add" @click = "addToMyTunes(song)"><span class="glyphicon glyphicon-plus"></span>  Add to Playlist</button>
                         </div>
                     </div>
                   <!-- <audio id="audio-source" :src="song.previewUrl"></audio> -->
@@ -44,7 +45,7 @@
                             <source id="audio-source" :src="song.previewUrl" type="audio/mpeg">
                         </audio>
                     </p>
-                </div>
+                 </div> 
             </div>
 
 
@@ -63,8 +64,10 @@
         methods: {
             getSongs() {
                 this.$store.dispatch("getMusicByArtist", this.artist)
+            },
+            addToMyTunes(song){
+                this.$store.dispatch("addToMyTunes", song)
             }
-
         },
        
         computed: { // computed creates a variable ,in this case songs, that is constantly the value of whatever is returned
@@ -79,8 +82,15 @@
 
 </script>
 <style scoped>
+    
+    .add{
+        margin-bottom:1vh;
+    }
+    
     .color {
         background-color: navy;
+        width:50%;
+        float:left;
     }
 
     .card {
@@ -111,9 +121,9 @@
 
     .card {
         border: 5px solid grey;
-        height: 40vh;
-        text-align: center;
-    }
+        height: 48vh;
+           text-align: center; 
+     }  
 
     .item {
         margin-top: 5vh;

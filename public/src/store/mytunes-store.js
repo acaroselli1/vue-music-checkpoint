@@ -4,6 +4,8 @@ import $ from 'jquery'
 
 vue.use(vuex)
 
+var ip = "//localhost:3000"
+
 var store = new vuex.Store({
   state: {
     myTunes: [],
@@ -12,7 +14,16 @@ var store = new vuex.Store({
   mutations: {
     setResults(state, results){
       state.results = results;
+    },
+     addSong(state, song){
+      state.myTunes.push(song);
+      console.log(state.myTunes)
+    },
+    removeTrack(state, song){
+     var index = state.myTunes.indexOf(song);
+     state.myTunes.splice(index,1);
     }
+  
   },
   actions: {
     getMusicByArtist({commit, dispatch}, artist) {
@@ -28,11 +39,13 @@ var store = new vuex.Store({
     getMyTunes({commit, dispatch}){
       //this should send a get request to your server to return the list of saved tunes
     },
-    addToMyTunes({commit, dispatch}, track){
+    addToMyTunes({commit, dispatch}, song){
       //this will post to your server adding a new track to your tunes
+       commit('addSong', song);
     },
-    removeTrack({commit, dispatch}, track){
+    removeTrack({commit, dispatch}, song){
       //Removes track from the database with delete
+      commit('removeTrack', song)
     },
     promoteTrack({commit, dispatch}, track){
       //this should increase the position / upvotes and downvotes on the track
