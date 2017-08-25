@@ -67,12 +67,23 @@
       removeTrack(song){
                 this.$store.dispatch("removeTrack", song)
             }, 
+
+      getMyTunes (){
+               this.$store.dispatch("getMyTunes")
+      }, 
+
       demoteTrack(song){
                 this.$store.dispatch("demoteTrack", song)
             }, 
       promoteTrack(song){
                 this.$store.dispatch("promoteTrack", song)
             }, 
+
+    }, 
+
+    mounted(){
+
+      this.getMyTunes();
 
     },
 

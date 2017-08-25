@@ -66,7 +66,15 @@
                 this.$store.dispatch("getMusicByArtist", this.artist)
             },
             addToMyTunes(song){
-                this.$store.dispatch("addToMyTunes", song)
+                var newSong = {
+                    artistName : song.artistName,
+                    trackName : song.trackName,
+                    collectionPrice : song.collectionPrice,
+                    artworkUrl100 : song.artworkUrl100,
+                    collectionName : song.collectionName,
+                    previewUrl : song.previewUrl
+                }
+                this.$store.dispatch("addToMyTunes", newSong)
             }
         },
        

@@ -15,7 +15,11 @@ var store = new vuex.Store({
     setResults(state, results){
       state.results = results;
     },
-     addSong(state, song){
+    setMyTunes(state,results){
+      state.myTunes = results;
+    },
+    
+    addSong(state, song){
       state.myTunes.push(song);
       console.log(state.myTunes)
     },
@@ -47,10 +51,15 @@ var store = new vuex.Store({
     },
     getMyTunes({commit, dispatch}){
       //this should send a get request to your server to return the list of saved tunes
+     $.get("//localhost:3000/api/music").then(res =>{
+    commit('setMyTunes', res)})
     },
     addToMyTunes({commit, dispatch}, song){
       //this will post to your server adding a new track to your tunes
-       commit('addSong', song);
+      $.post("//localhost:3000/api/music", song).then(()=>{
+        dispatch('getMyTunes')
+      }) 
+   
     },
     removeTrack({commit, dispatch}, song){
       //Removes track from the database with delete
