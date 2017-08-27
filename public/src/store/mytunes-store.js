@@ -24,18 +24,18 @@ var store = new vuex.Store({
       console.log(state.myTunes)
     },
     removeTrack(state, song){
-     var index = state.myTunes.indexOf(song);
-     state.myTunes.splice(index,1);
+    //  var index = state.myTunes.indexOf(song);
+    //  state.myTunes.splice(index,1);
     },
-    promoteTrack(state, song){
-     var index = state.myTunes.indexOf(song) 
-     state.myTunes.splice((index-1),2,song,state.myTunes[index-1])
+    // promoteTrack(state, song){
+    //  var index = state.myTunes.indexOf(song) 
+    //  state.myTunes.splice((index-1),2,song,state.myTunes[index-1])
      
-    },
-     demoteTrack(state, song){
-     var index = state.myTunes.indexOf(song);
-     state.myTunes.splice((index),2,state.myTunes[index+1],song)
-    },
+    // },
+    //  demoteTrack(state, song){
+    //  var index = state.myTunes.indexOf(song);
+    //  state.myTunes.splice((index),2,state.myTunes[index+1],song)
+    // },
   
   },
   actions: {
@@ -49,11 +49,17 @@ var store = new vuex.Store({
       console.log(JSON.parse(data))
       })
     },
+   
+   
     getMyTunes({commit, dispatch}){
       //this should send a get request to your server to return the list of saved tunes
      $.get("//localhost:3000/api/music").then(res =>{
+
+
+      
     commit('setMyTunes', res)})
     },
+  
     addToMyTunes({commit, dispatch}, song){
       //this will post to your server adding a new track to your tunes
       $.post("//localhost:3000/api/music", song).then(()=>{
@@ -61,17 +67,32 @@ var store = new vuex.Store({
       }) 
    
     },
-    removeTrack({commit, dispatch}, song){
+  
+  
+  
+    removeTrack({commit, dispatch},song){
       //Removes track from the database with delete
-      commit('removeTrack', song)
-    },
+      $.ajax({
+      contentType: 'application/json',
+      method: 'DELETE',
+      url: '//localhost:3000/api/music/' + song._id
+    })
+     .then((res)=>{
+        dispatch('getMyTunes')
+      }) 
+      .fail(()=>{console.log('Could not delete')})
+  },	
+     
+     
+   
     promoteTrack({commit, dispatch}, song){
       //this should increase the position / upvotes and downvotes on the track
-     commit('promoteTrack', song)
+    //  commit('promoteTrack', song)
     },
+    
     demoteTrack({commit, dispatch}, song){
       //this should decrease the position / upvotes and downvotes on the track
-     commit('demoteTrack', song)
+    //  commit('demoteTrack', song)
     }
 
   }

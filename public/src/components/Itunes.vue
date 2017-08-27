@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div>
-                    <p class="project-title">MUSIC IS FUN!</p>
+                    <p class="project-title">MUSIC SEARCH</p>
                 </div>
             </div>
         </div>
@@ -26,9 +26,9 @@
                 </form>
             </div>
         </div>
-        <div class="row">
+        <div class="row test">
             <div v-for="song in songs">
-                   <div class="col-xs-3 item">   
+                <div class="col-xs-4 item">
                     <div class="card">
                         <img class="card-img-top" :src="song.artworkUrl100" alt="card cap">
                         <div class="card-block">
@@ -36,16 +36,15 @@
                             <p class="artist">{{song.artistName}}</p>
                             <p>{{song.collectionName}}</p>
                             <p>{{song.collectionPrice}}</p>
-                            <button type= "button" class ="btn btn-primary btn-sm add" @click = "addToMyTunes(song)"><span class="glyphicon glyphicon-plus"></span>  Add to Playlist</button>
+                            <button type="button" class="btn btn-primary btn-sm add" @click="addToMyTunes(song)"><span class="glyphicon glyphicon-plus"></span>  Add to Playlist</button>
                         </div>
                     </div>
-                  <!-- <audio id="audio-source" :src="song.previewUrl"></audio> -->
                     <p>
                         <audio controls id="audio-player">
                             <source id="audio-source" :src="song.previewUrl" type="audio/mpeg">
                         </audio>
                     </p>
-                 </div> 
+                </div>
             </div>
 
 
@@ -65,19 +64,19 @@
             getSongs() {
                 this.$store.dispatch("getMusicByArtist", this.artist)
             },
-            addToMyTunes(song){
+            addToMyTunes(song) {
                 var newSong = {
-                    artistName : song.artistName,
-                    trackName : song.trackName,
-                    collectionPrice : song.collectionPrice,
-                    artworkUrl100 : song.artworkUrl100,
-                    collectionName : song.collectionName,
-                    previewUrl : song.previewUrl
+                    artistName: song.artistName,
+                    trackName: song.trackName,
+                    collectionPrice: song.collectionPrice,
+                    artworkUrl100: song.artworkUrl100,
+                    collectionName: song.collectionName,
+                    previewUrl: song.previewUrl
                 }
                 this.$store.dispatch("addToMyTunes", newSong)
             }
         },
-       
+
         computed: { // computed creates a variable ,in this case songs, that is constantly the value of whatever is returned
             songs() {
                 return this.$store.state.results.results;
@@ -90,15 +89,19 @@
 
 </script>
 <style scoped>
-    
-    .add{
-        margin-bottom:1vh;
+    .test{
+        margin-left:5vw;
     }
     
+    .add {
+        margin-bottom: 1vh;
+    }
+
     .color {
         background-color: navy;
-        width:75%;
-        float:left;
+        width: 70%;
+        float: left;
+        background-size: cover;
     }
 
     .card {
@@ -129,9 +132,9 @@
 
     .card {
         border: 5px solid grey;
-        height: 63vh;
-           text-align: center; 
-     }  
+        height: 60vh;
+        text-align: center;
+    }
 
     .item {
         margin-top: 5vh;
@@ -154,15 +157,5 @@
 
     .artist {
         font-weight: bold;
-    }
-
-    #cloud {
-        margin-top: 5vh;
-    }
-
-    #notes {
-        position: absolute;
-        top: -16vh;
-        right: 6vw;
     }
 </style>

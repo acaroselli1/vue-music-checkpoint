@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div>
-          <p class="project-title">Playlist</p>
+          <p class="project-title text-center">Playlist</p>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
       <div v-for="song in songs">
-      
+
         <div class="col-xs-8 item">
           <div class="card">
             <img class="card-img-top" :src="song.artworkUrl100" alt="card cap">
@@ -38,21 +38,20 @@
               </span>
               <span><button type="button" class="btn btn-primary btn-sm add" @click="removeTrack(song)"><span class="glyphicon glyphicon-remove-sign">Remove</span></button>
               </span>
-
+            </div>
           </div>
+          <!-- <audio id="audio-source" :src="song.previewUrl"></audio> -->
+          <p>
+            <audio controls id="audio-player">
+              <source id="audio-source" :src="song.previewUrl" type="audio/mpeg">
+            </audio>
+          </p>
         </div>
-        <!-- <audio id="audio-source" :src="song.previewUrl"></audio> -->
-        <p>
-          <audio controls id="audio-player">
-            <source id="audio-source" :src="song.previewUrl" type="audio/mpeg">
-          </audio>
-        </p>
+
       </div>
-    
+
+
     </div>
-
-
-  </div>
   </div>
 </template>
 <script>
@@ -63,25 +62,25 @@
       }
     },
     methods: {
-    
-      removeTrack(song){
-                this.$store.dispatch("removeTrack", song)
-            }, 
 
-      getMyTunes (){
-               this.$store.dispatch("getMyTunes")
-      }, 
+      removeTrack(song) {
+        this.$store.dispatch("removeTrack", song)
+      },
 
-      demoteTrack(song){
-                this.$store.dispatch("demoteTrack", song)
-            }, 
-      promoteTrack(song){
-                this.$store.dispatch("promoteTrack", song)
-            }, 
+      getMyTunes() {
+        this.$store.dispatch("getMyTunes")
+      },
 
-    }, 
+      demoteTrack(song) {
+        this.$store.dispatch("demoteTrack", song)
+      },
+      promoteTrack(song) {
+        this.$store.dispatch("promoteTrack", song)
+      },
 
-    mounted(){
+    },
+
+    mounted() {
 
       this.getMyTunes();
 
@@ -100,7 +99,7 @@
 </script>
 <style scoped>
   .color {
-    width: 25%;
+    width: 30%;
     float: right;
   }
 
@@ -110,14 +109,11 @@
 
   .color {
     background-color: navy;
+    background-size: cover;
   }
 
   .card {
     background-color: lightblue;
-  }
-
-  .card-title {
-    font-size: 2rem;
   }
 
   #audio-player {
@@ -139,14 +135,15 @@
   }
 
   .card {
+    background-color: lightblue;
     border: 5px solid grey;
-    height:50vh;
+    height: 55vh;
     text-align: center;
-   
   }
 
   .item {
     margin-top: 5vh;
+    margin-left: 6vw;
   }
 
   .card-img-top {
@@ -168,13 +165,5 @@
     font-weight: bold;
   }
 
-  #cloud {
-    margin-top: 5vh;
-  }
 
-  #notes {
-    position: absolute;
-    top: -16vh;
-    right: 6vw;
-  }
 </style>

@@ -15,6 +15,7 @@ var musicSchema = new mongoose.Schema({
   artworkUrl100: { type: String, required: true },
   collectionName: { type: String, required: true },
   previewUrl: { type: String, required: true },
+  
 })
 
 var Songs = mongoose.model('Song', musicSchema)
