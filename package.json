@@ -5,7 +5,7 @@
   "main": "server/index.js",//changed
   "scripts": {
     //"test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js" //changed
+    "start": "node server" //changed
   },
   "author": "",
   "license": "ISC",
