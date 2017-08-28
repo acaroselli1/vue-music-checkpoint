@@ -42,7 +42,7 @@ var store = new vuex.Store({
   actions: {
     getMusicByArtist({commit, dispatch}, artist) {
       var url = '//bcw-getter.herokuapp.com/?url=';
-      var url2 = 'https://itunes.apple.com/search?term=' + artist;
+      var url2 = '//itunes.apple.com/search?term=' + artist;
       var apiUrl = url + encodeURIComponent(url2);
       $.get(apiUrl).then(data=>{
         commit('setResults',JSON.parse(data)) // commit to the state through mutation 
@@ -115,7 +115,7 @@ var store = new vuex.Store({
 		$.ajax({
 			method: 'PUT',
 			contentType: 'application/json',
-			url: 'demo-deploy-acaroselli.herokuapp/api/music/' + song._id,
+			url: '//demo-deploy-acaroselli.herokuapp/api/music/' + song._id,
 			data: JSON.stringify(newPosition)
 		})
 			.then((message) => {
