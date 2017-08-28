@@ -12,7 +12,7 @@ var server = express();
 
 server.use(cors());
 
-server.use(express.static(__dirname + '/dist' )) //    '/../wwww/'
+server.use(express.static(__dirname + '/../public/dist' )) //    '/../wwww/'
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended:true}))
 
