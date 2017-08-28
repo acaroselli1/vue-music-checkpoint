@@ -64,19 +64,19 @@
             getSongs() {
                 this.$store.dispatch("getMusicByArtist", this.artist)
             },
-            addToMyTunes(song) {
-                var newSong = {
-                    artistName: song.artistName,
-                    trackName: song.trackName,
-                    collectionPrice: song.collectionPrice,
-                    artworkUrl100: song.artworkUrl100,
-                    collectionName: song.collectionName,
-                    previewUrl: song.previewUrl
-                }
-                this.$store.dispatch("addToMyTunes", newSong)
+       
+        addToMyTunes(song) {
+                // var newSong = {
+                //     artistName: song.artistName,
+                //     trackName: song.trackName,
+                //     collectionPrice: song.collectionPrice,
+                //     artworkUrl100: song.artworkUrl100,
+                //     collectionName: song.collectionName,
+                //     previewUrl: song.previewUrl
+                // }
+                this.$store.dispatch("addToMyTunes", song)
             }
         },
-
         computed: { // computed creates a variable ,in this case songs, that is constantly the value of whatever is returned
             songs() {
                 return this.$store.state.results.results;

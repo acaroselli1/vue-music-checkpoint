@@ -12,17 +12,18 @@ var store = new vuex.Store({
     results: []
   },
   mutations: {
-    setResults(state, results){
-      state.results = results;
+    setResults(state, response){
+      state.results = response;
+      console.log(state.results)
     },
-    setMyTunes(state,results){
-      state.myTunes = results;
+    setMyTunes(state,response){
+      state.myTunes = response;
     },
     
-    addSong(state, song){
-      state.myTunes.push(song);
-      console.log(state.myTunes)
-    },
+    // addSong(state, song){
+    //   state.myTunes.push(song);
+    //   console.log(state.myTunes)
+    // },
     removeTrack(state, song){
     //  var index = state.myTunes.indexOf(song);
     //  state.myTunes.splice(index,1);
@@ -44,9 +45,7 @@ var store = new vuex.Store({
       var url2 = 'https://itunes.apple.com/search?term=' + artist;
       var apiUrl = url + encodeURIComponent(url2);
       $.get(apiUrl).then(data=>{
-       // console.log(data)
         commit('setResults',JSON.parse(data)) // commit to the state through mutation 
-      console.log(JSON.parse(data))
       })
     },
    
@@ -62,7 +61,7 @@ var store = new vuex.Store({
   
     addToMyTunes({commit, dispatch}, song){
       //this will post to your server adding a new track to your tunes
-      $.post("//localhost:3000/api/music", song).then(()=>{
+      $.post("//localhost:3000/api/music", song).then((res)=>{
         dispatch('getMyTunes')
       }) 
    

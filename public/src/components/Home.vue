@@ -3,8 +3,7 @@
     <!-- YOU WILL PROBABLY END UP WITH SOMETHING LIKE THIS -->
     <mytunes></mytunes>
     <itunes></itunes>
-    
-  </div>
+ 
   </div>
 </template>
 
