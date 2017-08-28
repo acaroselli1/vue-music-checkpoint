@@ -41,11 +41,11 @@
             </div>
           </div>
           <!-- <audio id="audio-source" :src="song.previewUrl"></audio> -->
-          <p>
-            <audio controls id="audio-player">
-              <source id="audio-source" :src="song.previewUrl" type="audio/mpeg">
-            </audio>
-          </p>
+            
+            <div class="player">
+                <audio id="audio-player" :src="song.previewUrl" type="audio/wav" controls></audio>
+           </div>
+            
         </div>
 
       </div>
@@ -56,7 +56,7 @@
 </template>
 <script>
   export default {
-    name: 'Itunes',
+    name: 'Mytunes',
     data() {  // properties are being added to the data object
       return {
       }
@@ -143,7 +143,7 @@
 
   .item {
     margin-top: 5vh;
-    margin-left: 6vw;
+    margin-left: 5vw;
   }
 
   .card-img-top {

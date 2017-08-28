@@ -39,11 +39,11 @@
                             <button type="button" class="btn btn-primary btn-sm add" @click="addToMyTunes(song)"><span class="glyphicon glyphicon-plus"></span>  Add to Playlist</button>
                         </div>
                     </div>
-                    <p>
-                        <audio controls id="audio-player">
-                            <source id="audio-source" :src="song.previewUrl" type="audio/mpeg">
-                        </audio>
-                    </p>
+
+                    <div class="player">
+                        <audio id="audio-player" :src="song.previewUrl" type="audio/wav" controls></audio>
+                    </div>
+
                 </div>
             </div>
 
@@ -64,8 +64,8 @@
             getSongs() {
                 this.$store.dispatch("getMusicByArtist", this.artist)
             },
-       
-        addToMyTunes(song) {
+
+            addToMyTunes(song) {
                 // var newSong = {
                 //     artistName: song.artistName,
                 //     trackName: song.trackName,
@@ -89,10 +89,10 @@
 
 </script>
 <style scoped>
-    .test{
-        margin-left:5vw;
+    .test {
+        margin-left: 5vw;
     }
-    
+
     .add {
         margin-bottom: 1vh;
     }
