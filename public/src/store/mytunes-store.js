@@ -52,7 +52,7 @@ var store = new vuex.Store({
    
     getMyTunes({commit, dispatch}){
       //this should send a get request to your server to return the list of saved tunes
-     $.get("https://demo-deploy-acaroselli.herokuapp/api/music").then(res =>{
+     $.get("http://demo-deploy-acaroselli.herokuapp/api/music").then(res =>{
 
      res.sort(function(a,b){return b.position - a.position})
       
@@ -61,7 +61,7 @@ var store = new vuex.Store({
   
     addToMyTunes({commit, dispatch}, song){
       //this will post to your server adding a new track to your tunes
-      $.post("https://demo-deploy-acaroselli.herokuapp/api/music", song).then((res)=>{
+      $.post("http://demo-deploy-acaroselli.herokuapp/api/music", song).then((res)=>{
         dispatch('getMyTunes')
       }) 
    
@@ -74,7 +74,7 @@ var store = new vuex.Store({
       $.ajax({
       contentType: 'application/json',
       method: 'DELETE',
-      url: 'https://demo-deploy-acaroselli.herokuapp/api/music/' + song._id
+      url: 'http://demo-deploy-acaroselli.herokuapp/api/music/' + song._id
     })
      .then((res)=>{
         dispatch('getMyTunes')
@@ -93,7 +93,7 @@ var store = new vuex.Store({
 		$.ajax({
 			method: 'PUT',
 			contentType: 'application/json',
-			url: 'https://demo-deploy-acaroselli.herokuapp/api/music/' + song._id,
+			url: 'http://demo-deploy-acaroselli.herokuapp/api/music/' + song._id,
 			data: JSON.stringify(newPosition)
 		})
 			.then((message) => {
@@ -115,7 +115,7 @@ var store = new vuex.Store({
 		$.ajax({
 			method: 'PUT',
 			contentType: 'application/json',
-			url: 'https://demo-deploy-acaroselli.herokuapp/api/music/' + song._id,
+			url: 'http://demo-deploy-acaroselli.herokuapp/api/music/' + song._id,
 			data: JSON.stringify(newPosition)
 		})
 			.then((message) => {
