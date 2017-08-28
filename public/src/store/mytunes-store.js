@@ -54,7 +54,7 @@ var store = new vuex.Store({
       //this should send a get request to your server to return the list of saved tunes
      $.get("//localhost:3000/api/music").then(res =>{
 
-
+     res.sort(function(a,b){return b.position - a.position})
       
     commit('setMyTunes', res)})
     },
@@ -87,14 +87,46 @@ var store = new vuex.Store({
     promoteTrack({commit, dispatch}, song){
       //this should increase the position / upvotes and downvotes on the track
     //  commit('promoteTrack', song)
-    },
+		//var song = myTunes.find(song => song._id == songId)
+ 	   var newPosition = {"position": song.position + 1};
+		//STEP 3: Here is that weird Ajax request because $.put doesn't exist
+		$.ajax({
+			method: 'PUT',
+			contentType: 'application/json',
+			url: '//localhost:3000/api/music/' + song._id,
+			data: JSON.stringify(newPosition)
+		})
+			.then((message) => {
+				//DO YOU WANT TO DO ANYTHING WITH THIS?
+			 dispatch('getMyTunes') // <-- LEAVE ME ALONE I WORK LIKE THIS
+			})
+		//	.fail(logError) // BECAUSE AJAX IS A UNIQUE SNOWFLAKE AND HAS TO BE DIFFERENT YOU CANT USE .catch
+	
+  
+  
+  
+  },
     
     demoteTrack({commit, dispatch}, song){
       //this should decrease the position / upvotes and downvotes on the track
     //  commit('demoteTrack', song)
-    }
+   var newPosition = {"position": song.position - 1};
+		//STEP 3: Here is that weird Ajax request because $.put doesn't exist
+		$.ajax({
+			method: 'PUT',
+			contentType: 'application/json',
+			url: '//localhost:3000/api/music/' + song._id,
+			data: JSON.stringify(newPosition)
+		})
+			.then((message) => {
+				//DO YOU WANT TO DO ANYTHING WITH THIS?
+			 dispatch('getMyTunes')// <-- LEAVE ME ALONE I WORK LIKE THIS
+			})
+		//	.fail(logError) // BECAUSE AJAX IS A UNIQUE SNOWFLAKE AND HAS TO BE DIFFERENT YOU CANT USE .catch
+	
 
   }
+  } 
 })
 
 export default store

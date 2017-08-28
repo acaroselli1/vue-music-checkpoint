@@ -15,6 +15,7 @@ var musicSchema = new mongoose.Schema({
   artworkUrl100: { type: String, required: true },
   collectionName: { type: String, required: true },
   previewUrl: { type: String, required: true },
+  position:{type:Number, required:true, default:0}
   
 })
 
@@ -58,15 +59,15 @@ router.delete('/:songId', (req, res, next) => {
     .catch(next)
 })
 
-// router.put('/:blogId', (req, res, next) =>{
-//   var blogId = req.params.blogId
-//   var updatedBlogObj = req.body
-//   Blogs.findByIdAndUpdate(blogId, updatedBlogObj)
-//   .then(blog => {
-//     res.send({message: 'Successfully Updated Blog'})
-//   })
-//   .catch(next)
-// })
+router.put('/:songId', (req, res, next) =>{
+  var songId = req.params.songId
+  var updatedSongObj = req.body
+  Songs.findByIdAndUpdate(songId, updatedSongObj)
+  .then(song => {
+    res.send({message: 'Successfully Updated Blog'})
+  })
+  .catch(next)
+})
 
 
 router.use(defaultErrorHandler)
