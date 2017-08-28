@@ -4,7 +4,7 @@ import $ from 'jquery'
 
 vue.use(vuex)
 
-var ip = "demo-deploy-acaroselli.herokuapp"
+var ip = "//demo-deploy-acaroselli.herokuapp"
 
 var store = new vuex.Store({
   state: {
@@ -42,7 +42,7 @@ var store = new vuex.Store({
   actions: {
     getMusicByArtist({commit, dispatch}, artist) {
       var url = '//bcw-getter.herokuapp.com/?url=';
-      var url2 = '//itunes.apple.com/search?term=' + artist;
+      var url2 = 'https://itunes.apple.com/search?term=' + artist;
       var apiUrl = url + encodeURIComponent(url2);
       $.get(apiUrl).then(data=>{
         commit('setResults',JSON.parse(data)) // commit to the state through mutation 
